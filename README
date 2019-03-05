@@ -1,0 +1,7 @@
+A simple project to learn both NodeJS and Google 3rd Party login. 
+
+The database provider used is MySQL.
+
+The database table is a straight forward simple table created with the below statement - 
+
+create table Google_Credentials (id VARCHAR(100), name VARCHAR(100), profile_image TEXT, email VARCHAR(100) );
