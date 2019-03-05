@@ -6,27 +6,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	var profile = googleUser.getBasicProfile();//For this we want the bare minimum Google gives us.
 
+	//Send back the default info that Google gives us.
 	$.ajax({
 		type: "POST",
 		url: "http://www.luisantos.com:3000",
-		data: "nothing"
-
+		data: {
+			id : profile.getId(),
+			name : profile.getName(),
+			picture_url : profile.getImageUrl(),
+			email : profile.getEmail()
+		}
 	}).done(function(msg){
-		console.log(msg);
+		console.log(msg);//just a check to see what happened in the backend.
 	});
 	
-	}
+}//end onSignIn
 </script>
 <title>Lui Integration Project</title>
 </head>
 <body>
-<h2>Hello World!</h2>
+<h2>Sign In Below</h2>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 </body>
 </html>
